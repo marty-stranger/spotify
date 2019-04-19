@@ -22,7 +22,7 @@ func testClient(code int, body io.Reader, validators ...func(*http.Request)) (*C
 		}
 	}))
 	client := &Client{
-		http:    http.DefaultClient,
+		Http:    http.DefaultClient,
 		baseURL: server.URL + "/",
 	}
 	return client, server

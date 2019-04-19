@@ -43,7 +43,7 @@ const baseAddress = "https://api.spotify.com/v1/"
 // Client is a client for working with the Spotify Web API.
 // To create an authenticated client, use the `Authenticator.NewClient` method.
 type Client struct {
-	http    *http.Client
+	Http    *http.Client
 	baseURL string
 
 	AutoRetry bool
@@ -165,7 +165,7 @@ func isFailure(code int, validCodes []int) bool {
 // success codes.
 func (c *Client) execute(req *http.Request, result interface{}, needsStatus ...int) error {
 	for {
-		resp, err := c.http.Do(req)
+		resp, err := c.Http.Do(req)
 		if err != nil {
 			return err
 		}
@@ -203,7 +203,7 @@ func retryDuration(resp *http.Response) time.Duration {
 
 func (c *Client) get(url string, result interface{}) error {
 	for {
-		resp, err := c.http.Get(url)
+		resp, err := c.Http.Get(url)
 		if err != nil {
 			return err
 		}

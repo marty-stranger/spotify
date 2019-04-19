@@ -160,14 +160,14 @@ func (a Authenticator) Exchange(code string) (*oauth2.Token, error) {
 func (a Authenticator) NewClient(token *oauth2.Token) Client {
 	client := a.config.Client(a.context, token)
 	return Client{
-		http:    client,
+		Http:    client,
 		baseURL: baseAddress,
 	}
 }
 
 // Token gets the client's current token.
 func (c *Client) Token() (*oauth2.Token, error) {
-	transport, ok := c.http.Transport.(*oauth2.Transport)
+	transport, ok := c.Http.Transport.(*oauth2.Transport)
 	if !ok {
 		return nil, errors.New("spotify: oauth2 transport type not correct")
 	}
